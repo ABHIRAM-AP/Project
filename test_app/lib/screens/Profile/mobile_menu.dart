@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/screens/user_account_section.dart';
-import 'package:test_app/widgets/glass_card.dart';
-import 'package:test_app/widgets/gradient_divider.dart';
+import 'package:test_app/screens/Profile/user_account_section.dart';
+import 'package:test_app/widgets/Profile/profile_card.dart';
+import 'package:test_app/widgets/Profile/gradient_divider.dart';
 import 'package:test_app/widgets/util_tab.dart';
 
 class MobileMenu extends StatefulWidget {
@@ -25,9 +25,10 @@ class _MobileMenuState extends State<MobileMenu> {
           ),
           onPressed: () {
             if (Navigator.canPop(context)) {
-              Navigator.pop(context);
+              Navigator.pop(context); // Goes to previous page
             } else {
-              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.popUntil(context,
+                  (route) => route.isFirst); // Goes until first page is reached
             }
           },
         ),
@@ -40,9 +41,9 @@ class _MobileMenuState extends State<MobileMenu> {
             left: 20,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GlassCard(),
-              // const SizedBox(height: 30),
+              ProfileCard(),
               GradientDivider(),
               const SizedBox(height: 30),
               UserAccountSection(),

@@ -13,8 +13,8 @@ class _UtilTabState extends State<UtilTab> {
 
   final List<_UtilItemData> items = [
     _UtilItemData(
-        iconPath: ('assets/images/user_icon.png'), label: "Dashboard"),
-    _UtilItemData(iconPath: ('assets/images/home_icon.png'), label: "Strategy"),
+        iconPath: ('assets/images/home_icon.png'), label: "Dashboard"),
+    _UtilItemData(iconPath: ('assets/images/user_icon.png'), label: "Strategy"),
     _UtilItemData(
         iconPath: ('assets/images/settings_icon.png'), label: "Settings"),
   ];
@@ -22,14 +22,25 @@ class _UtilTabState extends State<UtilTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      height: 70,
+      margin: const EdgeInsets.only(top: 5),
+      height: 66,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.4),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
-          color: Color(0x5914161B)),
+        ],
+        border: const Border(
+          top: BorderSide(color: Colors.white12, width: 1.5),
+        ),
+        color: Colors.white.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(items.length, (index) {
@@ -64,14 +75,13 @@ Widget _buildUtilItem({
   final Color selectedColor = Color(0xFFA8A5FF);
   final Color unselectedColor = Color(0xFF636363);
 
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.only(bottom: 5),
+  return GestureDetector(
+    onTap: onTap,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 8, bottom: 4),
           decoration: isSelected
               ? BoxDecoration(
                   boxShadow: [
@@ -84,22 +94,39 @@ Widget _buildUtilItem({
               : null,
           child: Image.asset(
             iconPath,
-            width: 30,
-            height: 30,
+            width: 24,
+            height: 24,
             color: isSelected ? selectedColor : unselectedColor,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Text(
+        Text(
           label,
           style: GoogleFonts.urbanist(
             color: isSelected ? selectedColor : unselectedColor,
-            fontSize: 13,
+            fontSize: 11,
           ),
         ),
-      ),
-    ],
+        AnimatedOpacity(
+          duration: const Duration(milliseconds: 50),
+          opacity: isSelected ? 1 : 0,
+          child: Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: 30,
+            height: 0.3,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withValues(alpha: 0.8),
+                  blurRadius: 2,
+                  spreadRadius: 2,
+                  offset: const Offset(1, -1),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
   );
 }

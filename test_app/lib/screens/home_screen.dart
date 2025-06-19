@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test_app/screens/Tables/table_section.dart';
+import 'package:test_app/utils/size_config.dart';
+import 'package:test_app/widgets/Graphs/category_selector.dart';
+import 'package:test_app/screens/Graphs/graph_section.dart';
+
 import 'package:test_app/widgets/util_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,8 +15,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final CategorySelector _navbar = CategorySelector();
+  int selectedIndex = 0;
+  final List<String> titles = ["Overview", "Return", "Risk", "Trades"];
+  final List<String> iconPath = [
+    'assets/images/menu-square_icon.png',
+    'assets/images/money-send-circle_icon.png',
+    'assets/images/security_icon.png',
+    'assets/images/covariate_icon.png'
+  ];
+
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
     return Scaffold(
       backgroundColor: const Color(0xFF1A1B1E),
       appBar: AppBar(
@@ -50,16 +67,44 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: SafeArea(
-        child: Text(
-          "Home Screen",
-          style: GoogleFonts.urbanist(
-            color: Colors.white,
-            fontSize: 26,
-            height: 1,
-            fontWeight: FontWeight.w500,
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              titles.length,
+              (index) {
+                return Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      child: _navbar.buildTopNavBar(
+                        titles[index],
+                        iconPath[index],
+                        selectedIndex == index,
+                      ),
+                    ),
+                    if (index != titles.length - 1) const SizedBox(width: 10),
+                  ],
+                );
+              },
+            ),
           ),
-        ),
+          SizedBox(height: SizeConfig.scaleHeight(20)),
+          Expanded(
+            child: ListView(
+              children: [
+                GraphSection(),
+                SizedBox(height: 10),
+                TableSection(),
+              ],
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: UtilTab(),
     );
