@@ -14,11 +14,9 @@ A simple Flutter application for marketing trading activities.
 
 ## Screenshots
 
-### Home Screen
-![Home Screen](/screenshots/home.png)
-
 ### Graph Screen
-![Graph Screen](/screenshots/graph.png)
+![Graph Screen](/screenshots/graph_section.jpg)
 
 ### Account Handling
-![Account Screen](/screenshots/account.png)
+![Account Screen](/screenshots/profile_section.jpg)
+(/screenshots/add_account.jpg)
