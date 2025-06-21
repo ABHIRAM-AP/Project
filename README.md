@@ -17,5 +17,5 @@ A simple Flutter application for marketing trading activities.
 ### Home Screen
 <img src="/screenshots/graph_section.jpg" alt="Graph Screen" height="400">&nbsp;&nbsp;&nbsp;<img src="/screenshots/table_section.jpg" alt="Table Section" height="400">
 
-### Account Handling
+### Profile Screen
 <img src="/screenshots/profile_section.jpg" alt="Profile Section" height="400">&nbsp;&nbsp;&nbsp;<img src="/screenshots/add_account.jpg" alt="Add Account" height="400">
