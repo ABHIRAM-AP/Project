@@ -15,10 +15,10 @@ A simple Flutter application for marketing trading activities.
 ## Screenshots
 
 ### Home Screen
-![Home Screen](screenshots/home.png)
+![Home Screen](/screenshots/home.png)
 
 ### Graph Screen
-![Graph Screen](screenshots/graph.png)
+![Graph Screen](/screenshots/graph.png)
 
 ### Account Handling
-![Account Screen](screenshots/account.png)
+![Account Screen](/screenshots/account.png)
